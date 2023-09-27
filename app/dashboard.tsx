@@ -138,7 +138,7 @@ export default function Dashboard() {
   };
 
   const dashboardContent =[
-    <Home/>,<SaleHistory/>,<OrderHistory/>,<Inventory/>
+    <Home key={"home-content"}/>,<SaleHistory key={"sale-content"}/>,<OrderHistory key={"order-content"}/>,<Inventory key={"inventory-content"}/>
   ]
   return (
     <>
