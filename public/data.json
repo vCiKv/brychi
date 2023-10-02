@@ -1,183 +1,184 @@
+
 [{
   "id": "2ef2505f-9f48-4545-99f3-2285c1cd028b",
   "name": "Mexican Pinyon",
   "sizeCl": 85,
   "buyPrice": 1900,
-  "pieces": 22
+  "inventory": 22
 }, {
   "id": "aa581083-2a22-43ed-a8f0-d9bee06daf3e",
   "name": "Franklin's Phacelia",
   "sizeCl": 1500,
   "buyPrice": 1947,
-  "pieces": 10
+  "inventory": 10
 }, {
   "id": "d87adc36-ccd7-4d2a-894a-90910d9d5e9f",
   "name": "Ropalospora Lichen",
   "sizeCl": 1000,
   "buyPrice": 1870,
-  "pieces": 12
+  "inventory": 12
 }, {
   "id": "f1a3aee0-aa3a-4fd9-b78b-c0441d021cae",
   "name": "San Diego Raspberry",
   "sizeCl": 1000,
   "buyPrice": 1954,
-  "pieces": 24
+  "inventory": 24
 }, {
   "id": "6dafc911-ebc3-4a0b-9039-a7cec1fc0d1f",
   "name": "Yavapai County Buckwheat",
   "sizeCl": 85,
   "buyPrice": 1759,
-  "pieces": 12
+  "inventory": 12
 }, {
   "id": "31be9e9c-2c1f-4482-bfc8-727ae49646ba",
   "name": "Foldedleaf Grass",
   "sizeCl": 90,
   "buyPrice": 2071,
-  "pieces": 22
+  "inventory": 22
 }, {
   "id": "47909e32-1b42-4ae6-9c2a-1df83154b45f",
   "name": "Pearly Globe Amaranth",
   "sizeCl": 75,
   "buyPrice": 2005,
-  "pieces": 6
+  "inventory": 6
 }, {
   "id": "62387c5b-2a84-47e1-a84d-af32c67672d0",
   "name": "Honey Mesquite",
   "sizeCl": 90,
   "buyPrice": 1949,
-  "pieces": 12
+  "inventory": 12
 }, {
   "id": "bbd16df6-6e4d-4810-aaae-80e916ac4426",
   "name": "Douglas' Knotweed",
   "sizeCl": 1500,
   "buyPrice": 1927,
-  "pieces": 6
+  "inventory": 6
 }, {
   "id": "38ebfad8-d20d-46fd-b2ec-16ddb6f4541e",
   "name": "Porter's Licorice-root",
   "sizeCl": 75,
   "buyPrice": 1820,
-  "pieces": 22
+  "inventory": 22
 }, {
   "id": "c9227351-9e62-4016-bed8-97d5f29da478",
   "name": "Turpentine Wavewing",
   "sizeCl": 60,
   "buyPrice": 1825,
-  "pieces": 22
+  "inventory": 22
 }, {
   "id": "40a68ab2-d6ff-472d-917e-87b97d2c2d4b",
   "name": "White River Beardtongue",
   "sizeCl": 1500,
   "buyPrice": 2005,
-  "pieces": 24
+  "inventory": 24
 }, {
   "id": "67ad3af3-0138-4e28-9572-6f22016f326d",
   "name": "Pincushion Beardtongue",
   "sizeCl": 1500,
   "buyPrice": 2000,
-  "pieces": 10
+  "inventory": 10
 }, {
   "id": "9ce7863e-a23e-4e18-910f-bcc067844447",
   "name": "Nutrush",
   "sizeCl": 1500,
   "buyPrice": 1838,
-  "pieces": 24
+  "inventory": 24
 }, {
   "id": "ea520ea0-5a9c-4703-b2d2-ddfcb16995f7",
   "name": "Stickystem Penstemon",
   "sizeCl": 90,
   "buyPrice": 1759,
-  "pieces": 12
+  "inventory": 12
 }, {
   "id": "16ec9d58-ef20-488c-8788-e52acbd4aa2a",
   "name": "Hausknecht's Buckwheat",
   "sizeCl": 30,
   "buyPrice": 1865,
-  "pieces": 10
+  "inventory": 10
 }, {
   "id": "7eab8195-3498-4436-b540-53aadefbe17b",
   "name": "Bristly Mousetail",
   "sizeCl": 60,
   "buyPrice": 1855,
-  "pieces": 10
+  "inventory": 10
 }, {
   "id": "b5eb7edd-d5fa-4271-b677-b79323a40dc6",
   "name": "Woodland Sensitive Pea",
   "sizeCl": 1500,
   "buyPrice": 1780,
-  "pieces": 6
+  "inventory": 6
 }, {
   "id": "d26ad765-a899-4f46-b828-6e0fbc26421a",
   "name": "Common Chickweed",
   "sizeCl": 85,
   "buyPrice": 1802,
-  "pieces": 22
+  "inventory": 22
 }, {
   "id": "a978a41b-9098-403d-83be-1cf7eadb556b",
   "name": "Australian Flatsedge",
   "sizeCl": 85,
   "buyPrice": 2014,
-  "pieces": 22
+  "inventory": 22
 }, {
   "id": "ab011451-5f55-4bab-8da1-e4389383f300",
   "name": "Jacob's-ladder",
   "sizeCl": 60,
   "buyPrice": 1837,
-  "pieces": 6
+  "inventory": 6
 }, {
   "id": "26c21c20-1767-4022-9591-8fc3e2668338",
   "name": "Silky Kangaroo Grass",
   "sizeCl": 1000,
   "buyPrice": 2020,
-  "pieces": 22
+  "inventory": 22
 }, {
   "id": "08310798-bafe-4cca-bd5f-336712eeb891",
   "name": "Hairy Ironwort",
   "sizeCl": 85,
   "buyPrice": 2067,
-  "pieces": 24
+  "inventory": 24
 }, {
   "id": "1915b07e-b823-43a7-9bf9-35fe6ea7a10a",
   "name": "Rim Lichen",
   "sizeCl": 50,
   "buyPrice": 2072,
-  "pieces": 22
+  "inventory": 22
 }, {
   "id": "5fd77907-e12c-4ed2-8fa1-718678a43704",
   "name": "Flor De Pasmo",
   "sizeCl": 60,
   "buyPrice": 2057,
-  "pieces": 12
+  "inventory": 12
 }, {
   "id": "99b059e5-3f8a-4694-817f-76460242d5b2",
   "name": "Cory's Dutchman's Pipe",
   "sizeCl": 60,
   "buyPrice": 1814,
-  "pieces": 6
+  "inventory": 6
 }, {
   "id": "ff99dd56-19e9-4c86-a1fd-8af964e6d147",
   "name": "Sacramento Mesamint",
   "sizeCl": 40,
   "buyPrice": 1831,
-  "pieces": 22
+  "inventory": 22
 }, {
   "id": "fc188361-ae26-46bf-9354-5f60f67613b1",
   "name": "Tall Pinebarren Milkwort",
   "sizeCl": 60,
   "buyPrice": 2005,
-  "pieces": 10
+  "inventory": 10
 }, {
   "id": "71031bf8-32fb-4ab3-8f5e-0d8251e8effe",
   "name": "Mouseear Hawkweed",
   "sizeCl": 1000,
   "buyPrice": 1881,
-  "pieces": 24
+  "inventory": 24
 }, {
   "id": "fc9b508a-4f8c-470a-9db9-5411089f980e",
   "name": "Bulblet-bearing Water Hemlock",
   "sizeCl": 75,
   "buyPrice": 2098,
-  "pieces": 12
+  "inventory": 12
 }]
 
 
