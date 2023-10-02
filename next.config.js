@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+// require('./env.js');/** @type {import('next').NextConfig} */
 const nextConfig = {
 
 }
