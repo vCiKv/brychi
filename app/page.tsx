@@ -1,24 +1,17 @@
-"use client";
-import { Inter } from "next/font/google";
-import Login from "./login";
-import { getSession } from "@/lib/utils";
-import { useState } from "react";
+// "use client";
 import Dashboard from "./dashboard";
-const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
-  const [user] = useState(getSession("user"));
+// app/posts/page.ts
+type PageProps = {
+  params: {},
+  searchParams: { [key: string]: string | string[] | undefined },
+}
 
-  if (!user) {
-    return (
-      <main>
-        <Login />
-      </main>
-    );
-  }
-  return (
-    <main>
-      <Dashboard />
-    </main>
+
+export default function Home(props:PageProps) {
+  const searchParams = props.searchParams;
+  const activeTab = searchParams.tab;
+   return (
+    <Dashboard activeTab={Number(activeTab??0)} />
   );
 }

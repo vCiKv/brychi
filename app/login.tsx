@@ -1,7 +1,8 @@
 // import { Label } from "@/components/ui/label"
+"use client"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { getSession, setSession } from "@/lib/utils"
+import { setSession } from "@/lib/utils"
 import { useRouter } from "next/navigation"
 
 export default function Login() {
