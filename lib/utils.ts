@@ -14,7 +14,7 @@ export function cn(...inputs: ClassValue[]) {
 //   if (typeof window !== "undefined") {
 //     window.sessionStorage.setItem(key, JSON.stringify(value));
 //   }
-}
+//}
 type GetTotalDrinkSaleType = {
   (
     drinks: {
