@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -9,14 +10,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { DrinkType, cn, getDrinkById, getInitData } from "@/lib/utils";
+import { DrinkInventoryType } from "@/lib/types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-export default function Inventory(props:{miniSection?:boolean}) {
-  const [drinkData, setDrinkData] = useState<DrinkType[]>(getInitData());
-
-  const CustomTableRowInventory = (props: DrinkType) => {
+export default function Inventory(props:{data:DrinkInventoryType[]}) {
+  const [drinkData, setDrinkData] = useState(props.data);
+  // console.log("data",drinkData)
+  const CustomTableRowInventory = (props: DrinkInventoryType) => {
     return (
       <TableRow>
         <TableCell>{props.id}</TableCell>
@@ -24,7 +25,7 @@ export default function Inventory(props:{miniSection?:boolean}) {
         <TableCell>{props.sizeCl}cl</TableCell>
         <TableCell>N{props.buyPrice.toLocaleString("US-en")}</TableCell>
         <TableCell>N{props.sellPrice.toLocaleString("US-en")}</TableCell>
-        <TableCell>{props.pieces}</TableCell>
+        <TableCell>{props.inventory}</TableCell>
       </TableRow>
     );
   };
@@ -52,7 +53,7 @@ export default function Inventory(props:{miniSection?:boolean}) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {drinkData.map((drink) => (
+              {drinkData.length > 0 && drinkData.map((drink) => (
                 <CustomTableRowInventory key={drink.id} {...drink} />
               ))}
             </TableBody>
