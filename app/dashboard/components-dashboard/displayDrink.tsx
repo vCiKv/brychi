@@ -5,7 +5,7 @@ import { formatterNGN, getDrinkById } from "@/lib/utils";
 const DisplayDrinks = (props: DrinksType & {inventory:DrinkInventoryType[]}) => {
   const drink = getDrinkById(props.drinkId,props.inventory);
   const cost = props.cost;
-  const totalCost = props.cartonsAmount * cost;
+  const totalCost = Number(props.cartonsAmount) * cost;
   return (
       <div className="flex flex-col">
         <div className="flex gap-3 items-center justify-between">
