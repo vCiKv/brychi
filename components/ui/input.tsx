@@ -3,18 +3,12 @@ import * as React from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { FieldValues, UseFormRegister } from "react-hook-form";
+import { ClassNameValue } from "tailwind-merge";
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-}
-// <T extends FieldValues>
-export interface InputHookProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
   error?: string;
-  // register:UseFormRegister<T>
-  register: {};
+  containerClassName?:ClassNameValue
 }
 
 const labelVariants = cva(
@@ -36,7 +30,7 @@ const Label = React.forwardRef<
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
     return (
-      <div className="space-y-2">
+      <div className={cn("space-y-2",props.containerClassName)}>
         {props.label && <Label htmlFor={props.name}>{props.label}</Label>}
         <input
           type={type}
@@ -47,37 +41,15 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           {...props}
         />
+        {props.error && <p className="text-red-400 font-mono text-xs font-medium tracking-wide">{props.error ?? ""}</p>}
       </div>
     );
   }
 );
 
-const InputHook = React.forwardRef<HTMLInputElement, InputHookProps>(
-  ({ className, type, ...props }, ref) => {
-    return (
-      <div className="space-y-2">
-        {props.label && <Label htmlFor={props.name}>{props.label}</Label>}
-        <div>
-          <input
-            type={type}
-            className={cn(
-              "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-              className
-            )}
-            ref={ref}
-            {...props}
-          />
-          <p className="text-red-400">{props?.error ?? ""}</p>
-        </div>
-      </div>
-    );
-  }
-);
 
 Label.displayName = LabelPrimitive.Root.displayName;
 Input.displayName = "Input";
-InputHook.displayName = "InputHook";
 
 export { Input };
-export { InputHook };
 export { Label };
