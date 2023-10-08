@@ -27,11 +27,9 @@ const editInventory = async (type: "add" | "sub", drinks: DrinksType[]) => {
 
     const newStock = (i: string) => {
       const myInventory = Number(i);
-      const amount  = Number(drink.cartonsAmount)
+      const amount = Number(drink.cartonsAmount);
       return String(
-        type === "add"
-          ? myInventory + amount
-          : myInventory - amount
+        type === "add" ? myInventory + amount : myInventory - amount
       );
     };
     // await db.update(test).set({inventory:newStock(test.data)}).where((eq(test.id,myDrink.id)))
@@ -54,7 +52,7 @@ export const getInventory = cache(async () => {
   return inventory;
 });
 export const addNewInventory = async (data: Omit<DrinkInventoryType, "id">) => {
-  const id = data.name.slice(0, 3) +"-"+ data.sizeCl + "-" + makeRandomId(5);
+  const id = data.name.slice(0, 3) + "-" + data.sizeCl + "-" + makeRandomId(5);
   const newInventory = {
     id: id,
     ...data,
@@ -99,33 +97,36 @@ export const completeNewSale = async (data: {
   };
   const checkQuery = await db.transaction(async (tx) => {
     const q1 = await tx.insert(testSell).values(newSale);
-    console.log("q1",q1)
+    console.log("q1", q1);
     // const inventory = await getInventory()
-    if(!q1){
-      tx.rollback()
-      return false
+    if (!q1) {
+      tx.rollback();
+      return false;
     }
-    const q2 = await tx.transaction(async(tx2)=>{
-      let didFail = false
-      for(let drink of newSale.drinks){
-        const q3 = await tx2.update(test).set({inventory:sql`${test.inventory} + ${drink.cartonsAmount}`}).where(eq(test.id,drink.drinkId))
-        console.log("q3",q3)
-          
-        if(!q3){
-            tx.rollback()
-            tx2.rollback()
-            didFail = true
-          }
-      }
-      return !didFail
-    })
-    console.log("q2",q2)
+    const q2 = await tx.transaction(async (tx2) => {
+      let didFail = false;
+      for (let drink of newSale.drinks) {
+        const q3 = await tx2
+          .update(test)
+          .set({ inventory: sql`${test.inventory} - ${drink.cartonsAmount}` })
+          .where(eq(test.id, drink.drinkId));
+        console.log("q3", q3);
 
-    if(!q2){
-      return false
+        if (!q3) {
+          tx.rollback();
+          tx2.rollback();
+          didFail = true;
+        }
+      }
+      return !didFail;
+    });
+    console.log("q2", q2);
+
+    if (!q2) {
+      return false;
     }
-    return true
-  })
+    return true;
+  });
   if (checkQuery) {
     // editInventory("sub",data.drinks)
     revalidatePath("/");
@@ -142,65 +143,67 @@ export const getOrders = cache(async () => {
 export const updateOrderStatus = async (
   id: string,
   newStatus: number,
-  oldStatus: number
+  oldStatus: number,
+  drinks: DrinksType[]
 ) => {
-
   if (newStatus > 1 || newStatus < -1) {
     return false;
   }
   if (newStatus === oldStatus) {
     return true;
   }
-  if(newStatus === 1){
+  if (newStatus === 1) {
     const checkQuery = await db.transaction(async (tx) => {
-      const q1 = await tx.update(testBuy)
+      const q1 = await tx
+        .update(testBuy)
+        .set({ status: newStatus })
+        .where(eq(testBuy.id, id));
+      console.log("q1", q1);
+      // const inventory = await getInventory()
+      if (!q1) {
+        tx.rollback();
+        return false;
+      }
+      const q2 = await tx.transaction(async (tx2) => {
+        let didFail = false;
+        for (let drink of drinks) {
+          const q3 = await tx2
+            .update(test)
+            .set({ inventory: sql`${test.inventory} + ${drink.cartonsAmount}` })
+            .where(eq(test.id, drink.drinkId));
+          console.log("q3", q3);
+
+          if (!q3) {
+            tx.rollback();
+            tx2.rollback();
+            didFail = true;
+          }
+        }
+        return !didFail;
+      });
+      console.log("q2", q2);
+
+      if (!q2) {
+        return false;
+      }
+      return true;
+    });
+  } else {
+    const isComplete = await db
+      .update(testBuy)
       .set({ status: newStatus })
       .where(eq(testBuy.id, id));
-      console.log("q1",q1)
-      // const inventory = await getInventory()
-      if(!q1){
-        tx.rollback()
-        return false
+    // console.log("isComplete",isComplete)
+    if (isComplete) {
+      revalidatePath("/");
+      if (newStatus === 1) {
+        //update inventory
       }
-      const q2 = await tx.transaction(async(tx2)=>{
-        let didFail = false
-        for(let drink of newSale.drinks){
-          const q3 = await tx2.update(test).set({inventory:sql`${test.inventory} + ${drink.cartonsAmount}`}).where(eq(test.id,drink.drinkId))
-          console.log("q3",q3)
-            
-          if(!q3){
-              tx.rollback()
-              tx2.rollback()
-              didFail = true
-            }
-        }
-        return !didFail
-      })
-      console.log("q2",q2)
-  
-      if(!q2){
-        return false
-      }
-      return true
-    })
-  }else{
-    const isComplete = await db
-    .update(testBuy)
-    .set({ status: newStatus })
-    .where(eq(testBuy.id, id));
-  // console.log("isComplete",isComplete)
-  if (isComplete) {
-    revalidatePath("/");
-    if (newStatus === 1) {
-      //update inventory
+      return true;
+    } else {
+      return false;
     }
-    return true;
-  } else {
-    return false;
   }
-  }
-  
- 
 };
 export const completeNewOrder = async (data: {
   drinks: DrinkCardPropsType[];
@@ -221,21 +224,3 @@ export const completeNewOrder = async (data: {
     return false;
   }
 };
-// const getDataFromDb = async()=>{
-//   const value = {
-//     inventory:{
-//       // get:()=>getApiData("inventory"),
-//       data: await getInventory(),
-//     },
-//     sales:{
-//       // get:()=>getApiData("sell"),
-//       data: await db.select().from(testSell).orderBy(desc(testSell.time)),
-//       new:async(newSale:SellDataType)=> await db.insert(testSell).values(newSale)
-//     },
-//     orders:{
-//       // get:()=>getApiData("buy"),
-//       data:await db.select().from(testBuy).orderBy(desc(testBuy.time))
-//     }
-//   }
-//   return value
-// }
