@@ -2,13 +2,13 @@
 "use client"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { setSession } from "@/lib/utils"
+// import { setSession } from "@/lib/utils"
 import { useRouter } from "next/navigation"
 
 export default function Login() {
   const router = useRouter()
   const login = ()=>{
-    setSession("user",{uid:1,username:"test"})
+    // setSession("user",{uid:1,username:"test"})
     router.refresh()
   }
   return (

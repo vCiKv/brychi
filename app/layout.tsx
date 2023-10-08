@@ -2,8 +2,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Login from "./login";
-import { getSession } from "@/lib/utils";
 import { useState } from "react";
+import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,21 +19,12 @@ export default function RootLayout({
 }) {
   const [user] = useState(true);
 
-  if (!user) {
-    return (
-      <html lang="en">
-        <body className={inter.className}>
-          {" "}
-          
-        </body>
-      </html>
-    );
-  }
   return (
     <html lang="en">
       <body className={inter.className}>
           <main>
             {!user?<Login />:children}
+            <Toaster position="bottom-center" richColors/>
           </main>
       </body>
     </html>

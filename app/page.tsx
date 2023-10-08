@@ -1,4 +1,3 @@
-// "use client";
 import Dashboard from "./dashboard";
 
 // app/posts/page.ts
