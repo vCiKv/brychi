@@ -1,16 +1,16 @@
-interface invoiceDataType{
+export interface invoiceDataType{
   id:string,
   drinks: DrinksType[],
   time: string,
 } 
 export interface DrinksType{
   drinkId:string;
-  cartonsAmount:number;
+  cartonsAmount:string;
   cost:number;
   sizeCl:number
 }
 export interface SellDataType extends invoiceDataType {
-  customerName:string | null
+  customerName?:string | null
 }
 export interface BuyDataType extends invoiceDataType {
   purchasedFrom: string,
@@ -22,5 +22,8 @@ export interface DrinkInventoryType {
   sizeCl: number;
   buyPrice: number;
   sellPrice: number;
-  inventory: number | string;
+  inventory: string;
+}
+export interface DrinkCardPropsType extends DrinksType {
+  drinkName: string;
 }
