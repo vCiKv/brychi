@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { DrinkInventoryType } from "./types";
+// import { cookies } from "next/headers";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -15,6 +16,17 @@ export function cn(...inputs: ClassValue[]) {
 //     window.sessionStorage.setItem(key, JSON.stringify(value));
 //   }
 //}
+
+export const formatterNGN = (amount:number|string)=>{
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'NGN',
+  });
+  if(isNaN(Number(amount))){
+    return "0"
+  }
+  return formatter.format(Number(amount))
+}
 type GetTotalDrinkSaleType = {
   (
     drinks: {
@@ -45,7 +57,7 @@ export const getTotalDrinkSale = (
     const amount = drink.cost * Number(drink.cartonsAmount);
     total += amount;
   }
-  return isString ? total : total.toLocaleString("US-en");
+  return isString ? total : formatterNGN(total);
 };
 
 
@@ -60,8 +72,12 @@ export function getInitData() {
   });
   return myDataArr;
 }
-export const getDrinkById = (id: string) => {
-  for (let arr of getInitData()) {
+export const getDrinkById = (id:string|null|undefined,data:DrinkInventoryType[]) => {
+  // const myData = JSON.parse(cookies().get("drinkInventory")?.value??"[]")
+  if(!id){
+    return null
+  }
+  for (let arr of data) {
     if (arr.id === id) {
       return arr;
     }
