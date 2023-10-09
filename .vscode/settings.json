@@ -1,10 +1,12 @@
 {
   "cSpell.words": [
     "autoincrement",
+    "datetime",
     "hookform",
     "lucide",
     "planetscale",
     "sonner",
-    "tanstack"
+    "tanstack",
+    "tinyint"
   ]
 }
