@@ -224,3 +224,27 @@ export const completeNewOrder = async (data: {
     return false;
   }
 };
+
+export const logToDatabase = async(
+  type: keyof typeof options,
+  id: string,
+  special1?: string | number,
+  special2?: string | number
+) => {
+  console.log("db started")
+  const user  = "admin"
+  const now = dayjs().format("HH:mm:ss DD-MM-YYYY");
+  const options = {
+    addSale: `${user} added sale with id: ${id} on ${now}`,
+    addOrder: `${user} added order with id: ${id} on ${now}`,
+    updateOrderStatus: `${user} updated order status with id: ${id} from ${special1??"oldStatus"} to ${special2??"newStatus"} on ${now}`,
+    addInventory: `${user} add new inventory with id: ${id} on ${now}`,
+    updateInventory: `${user} updated inventory with id: ${id} from ${special1??"oldString"} to ${special2??"newString"} on ${now}`,
+  };
+
+  const message = options[type];
+};
+
+export const getLogs = cache(async()=>{
+
+})
