@@ -11,6 +11,7 @@ import {
 import dayjs from 'dayjs'
 import { DrinksType } from "@/lib/types";
 // declaring enum in database
+
 export const test = mysqlTable(
   "test",
   {
@@ -19,7 +20,7 @@ export const test = mysqlTable(
     sizeCl: int("sizeCl").notNull(),
     buyPrice: int("buyPrice").notNull(),
     sellPrice: int("sellPrice").notNull(),
-    inventory: decimal("inventory").notNull(),
+    inventory: decimal("inventory",{scale:1}).notNull(),
   }
 );
 const now = dayjs().format('YYYY-MM-DD HH:mm:ss')
@@ -43,3 +44,22 @@ export const testBuy = mysqlTable(
     status:tinyint("status").default(0).notNull()
   }
 )
+
+// interface DrinksType{
+//   drinkId:string;
+//   cartonsAmount:string;
+//   cost:number;
+//   sizeCl:number
+// }
+// function makeRandomId(length: number) {
+//   let result = "";
+//   const characters =
+//     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//   const charactersLength = characters.length;
+//   let counter = 0;
+//   while (counter < length) {
+//     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+//     counter += 1;
+//   }
+//   return result;
+// }
