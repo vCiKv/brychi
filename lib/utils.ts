@@ -98,26 +98,7 @@ export function makeRandomId(length: number) {
   return result;
 }
 
-export const logToDatabase = (
-  type: keyof typeof options,
-  user: string,
-  id: string,
-  special1?: string | number,
-  special2?: string | number
-) => {
-  const now = new Date();
-  const options = {
-    addSale: `${user} added sale on id ${id} on ${now}`,
-    addInventory: `${user} add inventory on id ${id} on ${now}`,
-    updatedInventory: `${user} updated inventory on id ${id} on ${now}`,
-    addDrink: `${user} added drink on id ${id} on ${now}`,
-    updateDrink: `${user} updated drink on id ${id} on ${now}`,
-  };
 
-  const message = options[type];
-
-  return message;
-};
 export const displayTime = (time: string) => {
   return time.replace("T", "\n").replace("Z", "");
 };

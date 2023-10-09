@@ -8,3 +8,4 @@ const connection = connect({
 });
  
 export const db = drizzle(connection);
+// await migrate(db, { migrationsFolder: "drizzle" });
