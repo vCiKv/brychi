@@ -10,10 +10,8 @@ import {
 import { SelectProps } from "@radix-ui/react-select";
 import { Label } from "./ui/input";
 import { DrinkInventoryType } from "@/lib/types";
-export interface SelectPropsType  extends SelectProps {
-}
 
-export default function SelectDrinks(props: SelectPropsType & {drinkData:DrinkInventoryType[]} ) {
+export default function SelectDrinks(props: SelectProps & {drinkData:DrinkInventoryType[]} ) {
 
   const drinkData = props.drinkData;
   return (
