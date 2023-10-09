@@ -4,6 +4,7 @@ import OrderHistory from "./dashboard/orders";
 import Inventory from "./dashboard/inventory";
 import DashboardMenu, { TabContent } from "./dashboard/menu";
 import { getInventory, getOrders, getSales } from "@/db/actions";
+import Logout from "@/components/Logout";
 
 export default async function Dashboard(props: { activeTab: number | string }) {
   const inventory = await getInventory();
@@ -32,6 +33,7 @@ export default async function Dashboard(props: { activeTab: number | string }) {
       ) : (
         <>
           <DashboardMenu />
+          <Logout/>
           <div className="px-4 md:container pt-12 mx-auto">
             {dashboardContent.map((content, index) => (
               <TabContent
