@@ -130,6 +130,8 @@ export const SalesDataTable = (props: {
   );
 };
 const ActionsOrders = (props: { id: string; oldStatus: number,drinks:DrinksType[] }) => {
+  const router = useRouter()
+
   const [loading, setLoading] = useState(false);
   const [newStatus, setNewStatus] = useState<string | undefined>(undefined);
   const id = props.id;
@@ -150,7 +152,6 @@ const ActionsOrders = (props: { id: string; oldStatus: number,drinks:DrinksType[
       name: "processing",
     },
   ];
-  const router = useRouter()
   const confirmStatusEdit = async () => {
     if (!newStatus) {
       return;
