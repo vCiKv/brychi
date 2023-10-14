@@ -110,7 +110,7 @@ export default function Inventory(props:{data:DrinkInventoryType[]}) {
         inventory={drinkData}
         set={setDrinkData}
         static={props.data}
-        searchKeys={["id","inventory","name"]}
+        searchKeys={["id","inventory","name","sizeCl","buyPrice","sellPrice"]}
       />
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0">

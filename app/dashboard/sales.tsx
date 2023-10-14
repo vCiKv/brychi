@@ -25,6 +25,7 @@ export default function SaleHistory(props: {
         set={setSellData}
         inventory={props.inventory}
         searchKeys={["customerName","id","time"]}
+        searchDrinks
       />
       <SalesDataTable data={sellData} inventory={props.inventory} />
     </>

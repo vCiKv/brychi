@@ -33,6 +33,8 @@ export default function OrderHistory(props: { data: BuyDataType[], inventory:Dri
         set={setBuyData}
         inventory={props.inventory}
         searchKeys={["id","purchasedFrom","time"]}
+        searchDrinks
+
       />
       <OrdersDataTable data={buyData} inventory={props.inventory} />
     </>
