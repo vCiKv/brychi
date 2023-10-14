@@ -26,7 +26,11 @@ export default function SelectDrinks(props: SelectProps & {drinkData:DrinkInvent
           <SelectLabel>Drinks</SelectLabel>
           {drinkData.map((drink) => (
             <SelectItem key={"select-" + drink.id} value={drink.id}>
-              {drink.name} - {drink.sizeCl}cl
+              <div className="flex flex-col">
+                <span>
+                  {drink.name} - {drink.sizeCl}cl ({drink.inventory} left)
+                </span>
+              </div>
             </SelectItem>
           ))}
         </SelectGroup>        
