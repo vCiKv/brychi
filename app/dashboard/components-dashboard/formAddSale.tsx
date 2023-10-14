@@ -126,7 +126,7 @@ export const AddSale = (props: {
     undefined
   );
 
-  const totalSales = getTotalDrinkSale(drinkList);
+  const router = useRouter()
 
   const completeSale = async () => {
     if (loading) {
@@ -144,7 +144,6 @@ export const AddSale = (props: {
       setCustomerName(undefined);
       setLoading(false);
       props.toggle();
-      const router = useRouter()
       router.refresh()
     } else {
       toast.error("failed to add sale");

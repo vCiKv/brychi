@@ -80,6 +80,7 @@ const AddInventoryForm = (props: {
   inventory: DrinkInventoryType[];
 }) => {
   const [loading, setLoading] = useState(false);
+  const router = useRouter()
 
   const completeDrinkEdit = async(data:AddInventoryInputType)=>{
     if(loading){
@@ -91,7 +92,6 @@ const AddInventoryForm = (props: {
     if(isComplete){
       toast.success("added new drink successfully")
       setLoading(false)
-      const router = useRouter()
       router.refresh()
       return
     }else{

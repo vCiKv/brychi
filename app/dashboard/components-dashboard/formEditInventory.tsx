@@ -89,6 +89,8 @@ const EditInventoryForm = (props: {
     name: undefined,
     id:undefined
   })
+  const router = useRouter()
+
   const updateCurrentDrink = (val:string)=>{
     const myCurrentDrink = getDrinkById(val,allInventory)
     if(myCurrentDrink){
@@ -110,7 +112,6 @@ const EditInventoryForm = (props: {
     if(isComplete){
       toast.success("Edited drink successfully")
       setLoading(false)
-      const router = useRouter()
       router.refresh()
       return
     }else{

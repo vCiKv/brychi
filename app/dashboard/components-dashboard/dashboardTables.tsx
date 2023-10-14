@@ -150,6 +150,7 @@ const ActionsOrders = (props: { id: string; oldStatus: number,drinks:DrinksType[
       name: "processing",
     },
   ];
+  const router = useRouter()
   const confirmStatusEdit = async () => {
     if (!newStatus) {
       return;
@@ -170,7 +171,6 @@ const ActionsOrders = (props: { id: string; oldStatus: number,drinks:DrinksType[
       toast.success(id + " status updated");
       setNewStatus(undefined);
       setLoading(false);
-      const router = useRouter()
       router.refresh()
       return;
     } else {
