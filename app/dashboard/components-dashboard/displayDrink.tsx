@@ -7,7 +7,7 @@ const DisplayDrinks = (props: DrinksType & {inventory:DrinkInventoryType[]}) => 
   const cost = props.cost;
   const totalCost = Number(props.cartonsAmount) * cost;
   return (
-      <div className="flex flex-col">
+      <div className="flex flex-col max-w-[190px]">
         <div className="flex gap-3 items-center justify-between">
           <span>
             {drink?.name ?? "drink not found"}
