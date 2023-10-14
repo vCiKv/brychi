@@ -6,7 +6,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Brychi",
   description:
-    "A simple and powerful Next.js template featuring authentication and user management powered by Clerk.",
+    "dashboard for brychi",
   openGraph: { images: ["/og.png"] },
 };
 export default function RootLayout({
