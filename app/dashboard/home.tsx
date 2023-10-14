@@ -35,19 +35,6 @@ const getTodaySales = (data: SellDataType[], limit?: number) => {
 export default function Home(props: 
   { buy: BuyDataType[]; sell: SellDataType[],inventory:DrinkInventoryType[] }
 ) {
-  // const [buyData] = useState(props.buy);
-  // const [sellData] = useState(props.sell);
-  // const [slicedData,setSlicedData] = useState<{ buy: BuyDataType[]; sell: SellDataType[] }>({
-  //   buy:[],
-  //   sell:[]
-  // })
- 
-  // useEffect(()=>{
-  //   setSlicedData({
-  //     buy:buyData.slice(0,6),
-  //     sell:sellData.slice(0,6)
-  //   })
-  // },[buyData,sellData])
   return (
     <div className="space-y-8">
       <h1 className="py-4 text-6xl font-bold tracking-tighter text-center md:text-8xl">
@@ -58,8 +45,6 @@ export default function Home(props:
         todaySales={getTodaySales(props.sell)}
       />
       <HomeDataTable inventory={props.inventory} sell={props.sell} buy={props.buy}/>
-      {/* <DataTableSales data={slicedData.sell} inventory={props.inventory}/>
-      <DataTableOrder data={slicedData.buy} inventory={props.inventory} /> */}
     </div>
   );
 }

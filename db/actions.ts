@@ -12,10 +12,7 @@ import { cache } from "react";
 import { makeRandomId } from "@/lib/utils";
 import dayjs from "dayjs";
 import { revalidatePath } from "next/cache";
-
-const reloadPage = () => {
-  revalidatePath("/");
-};
+// import { useRouter } from "next/router";
 const editInventory = async (type: "add" | "sub", drinks: DrinksType[]) => {
   const inventory = await getInventory();
   for (let drink of drinks) {
@@ -48,7 +45,6 @@ const getInventoryById = (id: string, data: DrinkInventoryType[]) => {
 };
 export const getInventory = cache(async () => {
   const inventory = await db.select().from(test);
-  //cookies().set('drinkInventory', JSON.stringify(inventory))
   return inventory;
 });
 export const addNewInventory = async (data: Omit<DrinkInventoryType, "id">) => {
@@ -58,9 +54,7 @@ export const addNewInventory = async (data: Omit<DrinkInventoryType, "id">) => {
     ...data,
   };
   const createInventory = await db.insert(test).values(newInventory);
-  console.log("inv", createInventory);
   if (createInventory) {
-    // editInventory("sub",data.drinks)
     revalidatePath("/");
     return true;
   } else {
@@ -97,7 +91,6 @@ export const completeNewSale = async (data: {
   };
   const checkQuery = await db.transaction(async (tx) => {
     const q1 = await tx.insert(testSell).values(newSale);
-    console.log("q1", q1);
     // const inventory = await getInventory()
     if (!q1) {
       tx.rollback();
@@ -110,8 +103,6 @@ export const completeNewSale = async (data: {
           .update(test)
           .set({ inventory: sql`${test.inventory} - ${drink.cartonsAmount}` })
           .where(eq(test.id, drink.drinkId));
-        console.log("q3", q3);
-
         if (!q3) {
           tx.rollback();
           tx2.rollback();
@@ -120,7 +111,6 @@ export const completeNewSale = async (data: {
       }
       return !didFail;
     });
-    console.log("q2", q2);
 
     if (!q2) {
       return false;
@@ -158,7 +148,6 @@ export const updateOrderStatus = async (
         .update(testBuy)
         .set({ status: newStatus })
         .where(eq(testBuy.id, id));
-      console.log("q1", q1);
       // const inventory = await getInventory()
       if (!q1) {
         tx.rollback();
@@ -171,8 +160,6 @@ export const updateOrderStatus = async (
             .update(test)
             .set({ inventory: sql`${test.inventory} + ${drink.cartonsAmount}` })
             .where(eq(test.id, drink.drinkId));
-          console.log("q3", q3);
-
           if (!q3) {
             tx.rollback();
             tx2.rollback();
@@ -181,13 +168,14 @@ export const updateOrderStatus = async (
         }
         return !didFail;
       });
-      console.log("q2", q2);
 
       if (!q2) {
         return false;
       }
       return true;
     });
+    revalidatePath("/");
+    return checkQuery
   } else {
     const isComplete = await db
       .update(testBuy)
@@ -196,9 +184,6 @@ export const updateOrderStatus = async (
     // console.log("isComplete",isComplete)
     if (isComplete) {
       revalidatePath("/");
-      if (newStatus === 1) {
-        //update inventory
-      }
       return true;
     } else {
       return false;
@@ -224,7 +209,6 @@ export const completeNewOrder = async (data: {
     return false;
   }
 };
-
 export const logToDatabase = async(
   type: keyof typeof options,
   id: string,
