@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { string, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DrinkCard, useDrinkHook } from "./formAddUtils";
+import { useRouter } from "next/navigation";
 
 const editInventoryFormSchema = z.object({
   sizeCl: z
@@ -109,6 +110,8 @@ const EditInventoryForm = (props: {
     if(isComplete){
       toast.success("Edited drink successfully")
       setLoading(false)
+      const router = useRouter()
+      router.refresh()
       return
     }else{
       setLoading(false)

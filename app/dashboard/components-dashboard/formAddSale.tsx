@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DrinkCard, useDrinkHook } from "./formAddUtils";
+import { useRouter } from "next/navigation";
 
 const saleFormSchema = z.object({
   drinkId: z.string().nonempty("a drink must be selected"),
@@ -139,10 +140,12 @@ export const AddSale = (props: {
     });
     if (isComplete) {
       toast.success("added sale");
-      setLoading(false);
       clearDrinks();
       setCustomerName(undefined);
+      setLoading(false);
       props.toggle();
+      const router = useRouter()
+      router.refresh()
     } else {
       toast.error("failed to add sale");
       setLoading(false);
@@ -159,7 +162,6 @@ export const AddSale = (props: {
         setCustomerName={setCustomerName}
         addDrink={addDrink}
       />
-      {Number(totalSales) > 0 && <div>Total {formatterNGN(totalSales)}</div>}
       <div className="flex md:gap-1 gap-2 flex-wrap-reverse">
         {drinkList.map((drink, index) => (
           <DrinkCard
@@ -168,6 +170,7 @@ export const AddSale = (props: {
             removeDrink={removeDrink}
           />
         ))}
+        <h6 className="text-lg font-bold">Total Items: {drinkList.length>0 ? getTotalDrinkSale(drinkList):0}</h6>
       </div>
       {drinkList.length > 0 && (
         <div className="my-6 flex justify-center">

@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DrinkCard, useDrinkHook } from "./formAddUtils";
+import { useRouter } from "next/navigation";
 
 const orderFormSchema = z.object({
   drinkId: z.string().nonempty("a drink must be selected"),
@@ -142,13 +143,15 @@ export const AddOrder = (props: {
       purchasedFrom,
     });
     if (isComplete) {
-      toast.success("added sale");
+      toast.success("added order");
       setLoading(false);
       clearDrinks();
       setPurchasedFrom(undefined);
       props.toggle();
+      const router = useRouter()
+      router.refresh()
     } else {
-      toast.error("failed to add sale");
+      toast.error("failed to add order");
       setLoading(false);
     }
     return;

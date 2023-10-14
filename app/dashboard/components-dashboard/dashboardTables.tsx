@@ -130,7 +130,6 @@ export const SalesDataTable = (props: {
   );
 };
 const ActionsOrders = (props: { id: string; oldStatus: number,drinks:DrinksType[] }) => {
-  const router = useRouter()
   const [loading, setLoading] = useState(false);
   const [newStatus, setNewStatus] = useState<string | undefined>(undefined);
   const id = props.id;
@@ -167,9 +166,11 @@ const ActionsOrders = (props: { id: string; oldStatus: number,drinks:DrinksType[
       props.drinks
     );
     if (isComplete) {
+      
       toast.success(id + " status updated");
       setNewStatus(undefined);
       setLoading(false);
+      const router = useRouter()
       router.refresh()
       return;
     } else {

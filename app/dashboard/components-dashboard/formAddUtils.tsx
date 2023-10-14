@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { DrinkCardPropsType } from "@/lib/types";
 import { formatterNGN } from "@/lib/utils";
+import { X } from "lucide-react";
 import { useState } from "react";
 
 export const useDrinkHook = () => {
@@ -32,10 +33,10 @@ export const DrinkCard = (
   return (
     <Card className="relative flex flex-col p-6">
       <span
-        className="absolute top-0 right-0 px-1 text-white font-black bg-red-600 rounded-full text-sm m-1"
+        className="absolute top-0 right-0 p-1 text-white font-black bg-red-600 rounded-full text-sm m-1"
         onClick={() => props.removeDrink(props.drinkId)}
       >
-        X
+        <X  size={16}/>
       </span>
       <span className="text-sm font-light">{props.drinkId}</span>
       <p className="text-lg">
